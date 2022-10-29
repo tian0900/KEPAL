@@ -9,6 +9,8 @@ use App\Models\sosial_media;
 use App\Models\Galeri;
 use App\Models\Testimoni;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class HomeController extends Controller
@@ -50,4 +52,5 @@ class HomeController extends Controller
         $Instagrams = sosial_media::where('id_sosialmedia',1)->first();
         return view('layout.footer',compact('instagrams'));
     }
+
 }

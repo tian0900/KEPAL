@@ -44,14 +44,14 @@ class LoginController extends Controller
     {
         $salt="a1Bz20ydqelm8m1wql";
         $input = $request->all();
-        
-        
 
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
+
+        
         if (auth()->attempt(array('email' => $input['email'], 'password' =>
         $input['password']))) {
             if (auth()->user()->role == 1) {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\CafeController;
@@ -42,6 +43,8 @@ use App\Http\Controllers\PembayaranController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/verification', [UserController::class, 'verification']);
+Route::post('/postverification', [UserController::class, 'postverification'])->name('postverification');
 Route::get('/sosial_media', [HomeController::class, 'sosial_media']);
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/layanan', [LayananController::class, 'index']);
