@@ -63,13 +63,14 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+    
     protected function create(array $data)
     {
-        $salt = "a1Bz20ydqelm8m1wql";
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make(hash('sha256',$salt.$data['password'])),
+            'password' => Hash::make(hash('sha256',$data['password'])),
             'nomor_telephone' => $data['nomor_telephone'],
         ]);
     }

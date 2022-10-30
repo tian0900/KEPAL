@@ -87,7 +87,7 @@
                                                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                                                             </div>
                                                                             <div class="col-auto">
-                                                                                <button type="button" class="btn btn-primary btn-icon-split" onclick="window.location.href='pemesanandetail/{{$daftarpemesanans->id_pemesananproduk}}'">
+                                                                                <button type="button" class="btn btn-primary btn-icon-split" onclick="window.location.href='pemesanandetail/{{encrypt($daftarpemesanans->id_pemesananproduk)}}'">
                                                                                     <a class="btn btn-primary btn-icon-split">
                                                                                         <span class="icon text-white-50">
                                                                                             <i class="fas fa-eye"></i>
@@ -116,7 +116,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-auto">
-                                                                                <button type="button" class="btn btn-info btn-icon-split" onclick="window.location.href='pembookingandetail/{{$daftarpemesanans->id_pembookinganlayanan}}'">
+                                                                                <button type="button" class="btn btn-info btn-icon-split" onclick="window.location.href='pembookingandetail/{{encrypt($daftarpemesanans->id_pembookinganlayanan)}}'">
                                                                                     <a class="btn btn-info btn-icon-split">
                                                                                         <span class="icon text-white-50">
                                                                                             <i class="fas fa-eye"></i>

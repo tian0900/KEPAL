@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PemesananProduk;
 use App\Models\PemesananProdukDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DaftarPemesananController extends Controller
@@ -33,17 +34,18 @@ class DaftarPemesananController extends Controller
     }
 
     public function detail($id_pemesananproduk){
-        $pemesanandetail = PemesananProdukDetail::find($id_pemesananproduk);
+        
+        $pemesanandetail = PemesananProdukDetail::find(decrypt($id_pemesananproduk));
         $pemesanan = DB::table('pemesananproduk')
                     ->join('users', 'users.user_id','=','pemesananproduk.id_customer')
                     ->select('pemesananproduk.*','users.name','users.nomor_telephone')
-                    ->where('pemesananproduk.id_pemesananproduk','=',$id_pemesananproduk)
+                    ->where('pemesananproduk.id_pemesananproduk','=',decrypt($id_pemesananproduk))
                     ->get();
         $daftarjoin = DB::table('pemesananprodukdetail')
                     ->join('pemesananproduk', 'pemesananprodukdetail.id_pemesananproduk','=','pemesananproduk.id_pemesananproduk')
                     ->join('produk','pemesananprodukdetail.id_produk','=','produk.id_produk')
                     ->select('pemesananprodukdetail.*','produk.*')
-                    ->where('pemesananprodukdetail.id_pemesananproduk','=',$id_pemesananproduk)
+                    ->where('pemesananprodukdetail.id_pemesananproduk','=',decrypt($id_pemesananproduk))
                     ->get();
         return view('admin.daftarpemesanandetail',compact('pemesanandetail','pemesanan','daftarjoin'));
     }

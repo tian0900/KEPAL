@@ -6,6 +6,8 @@ use App\Models\PembookinganLayanan;
 use App\Models\PembookinganLayananDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Crypt;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DaftarPembookinganController extends Controller
@@ -34,17 +36,17 @@ class DaftarPembookinganController extends Controller
 
     
     public function detail($id_pembookinganlayanan){
-        $pembookingandetail = PembookinganLayananDetail::find($id_pembookinganlayanan);
+        $pembookingandetail = PembookinganLayananDetail::find(decrypt($id_pembookinganlayanan));
         $pembookingan = DB::table('pembookinganlayanan')
                     ->join('users', 'users.user_id','=','pembookinganlayanan.id_customer')
                     ->select('pembookinganlayanan.*','users.name','users.nomor_telephone')
-                    ->where('pembookinganlayanan.id_pembookinganlayanan','=',$id_pembookinganlayanan)
+                    ->where('pembookinganlayanan.id_pembookinganlayanan','=',decrypt($id_pembookinganlayanan))
                     ->get();
         $daftarjoin = DB::table('pembookinganlayanandetail')
                     ->join('pembookinganlayanan', 'pembookinganlayanandetail.id_pembookinganlayanan','=','pembookinganlayanan.id_pembookinganlayanan')
                     ->join('layanan','pembookinganlayanandetail.id_layanan','=','layanan.id_layanan')
                     ->select('pembookinganlayanandetail.*','layanan.*')
-                    ->where('pembookinganlayanandetail.id_pembookinganlayanan','=',$id_pembookinganlayanan)
+                    ->where('pembookinganlayanandetail.id_pembookinganlayanan','=',decrypt($id_pembookinganlayanan))
                     ->get();
         return view('admin.daftarpembookingandetail',compact('pembookingandetail','pembookingan','daftarjoin'));
     }

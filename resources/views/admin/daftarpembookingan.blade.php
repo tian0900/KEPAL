@@ -69,7 +69,7 @@
                                                         <span class="text">Konfirmasi</span>
                                                     </a></button>
                                                 <button class="btn btn-info btn-icon-split">
-                                                    <a href="pembookingandetail/{{$pembookingan->id_pembookinganlayanan}}" class="btn btn-info btn-icon-split">
+                                                    <a href="pembookingandetail/{{encrypt($pembookingan->id_pembookinganlayanan)}}" class="btn btn-info btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info"></i>
                                                         </span>
@@ -87,7 +87,7 @@
                                             </td>
                                         </tr>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{$pembookingan->id_pembookinganlayanan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{encrypt($pembookingan->id_pembookinganlayanan)}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

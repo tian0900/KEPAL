@@ -75,7 +75,7 @@
 
 
                                                 <button class="btn btn-info btn-icon-split">
-                                                    <a href="pemesanandetail/{{$pemesanan->id_pemesananproduk}}" class="btn btn-info btn-icon-split">
+                                                    <a href="pemesanandetail/{{encrypt($pemesanan->id_pemesananproduk)}}" class="btn btn-info btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info"></i>
                                                         </span>

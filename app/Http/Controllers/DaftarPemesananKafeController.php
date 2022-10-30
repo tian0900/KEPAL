@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PemesananKafeDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class DaftarPemesananKafeController extends Controller
 {
@@ -20,12 +21,12 @@ class DaftarPemesananKafeController extends Controller
     }
 
     public function detail($id_pemesanankafe){
-        $pemesanandetail = PemesananKafeDetail::find($id_pemesanankafe);
+        $pemesanandetail = PemesananKafeDetail::find(decrypt($id_pemesanankafe));
         $pemesanan = DB::table('pemesanankafedetail')
                     ->join('pemesanankafe', 'pemesanankafedetail.id_pemesanankafe','=','pemesanankafe.id_pemesanankafe')
                     ->join('cafe','pemesanankafedetail.id_cafe','=','cafe.id_cafe')
                     ->select('pemesanankafedetail.*','cafe.*')
-                    ->where('pemesanankafedetail.id_pemesanankafe','=',$id_pemesanankafe)
+                    ->where('pemesanankafedetail.id_pemesanankafe','=',decrypt($id_pemesanankafe))
                     ->get();
         return view('admin.daftarpemesanankafedetail',compact('pemesanandetail','pemesanan'));
     }
