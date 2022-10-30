@@ -154,7 +154,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('postresend') }}">
                             {{ csrf_field() }}
                             <label for="exampleFormControlInput1">Email</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Masukkan Email">

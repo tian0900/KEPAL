@@ -45,6 +45,7 @@ use App\Http\Controllers\PembayaranController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/verification', [UserController::class, 'verification']);
 Route::post('/postverification', [UserController::class, 'postverification'])->name('postverification');
+Route::post('/post/resend', [UserController::class, 'postresend'])->name('postresend');
 Route::get('/sosial_media', [HomeController::class, 'sosial_media']);
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/layanan', [LayananController::class, 'index']);
