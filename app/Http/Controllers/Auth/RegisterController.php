@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserActivationEmail;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 class RegisterController extends Controller
 {
     /*
@@ -72,6 +75,27 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make(hash('sha256',$data['password'])),
             'nomor_telephone' => $data['nomor_telephone'],
+            'token_activation' => Str::random(6),
+            'isVerified' => false
         ]);
+    }
+
+        /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        //
+
+
+        event(new UserActivationEmail($user));
+
+        $this->guard()->logout();
+        Alert::success('Success', 'Registrasi berhasil silahkan cek email untuk aktivasi!');
+        return redirect('/verification');
     }
 }

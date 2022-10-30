@@ -42,14 +42,22 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+<<<<<<< HEAD
         
         $input = $request->all();
         
+=======
+        $salt="a1Bz20ydqelm8m1wql";
+        $input = $request->all();
+
+>>>>>>> 18d8d620c809a299443f4c3b9addc43e29d86b62
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
+
+        
         if (auth()->attempt(array('email' => $input['email'], 'password' =>
         $input['password']))) {
             if (auth()->user()->role == 1) {
